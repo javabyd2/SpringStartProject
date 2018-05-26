@@ -1,19 +1,16 @@
 package com.sda.spring.demo.controller;
 
-import com.sda.spring.demo.model.Author;
-import com.sda.spring.demo.model.Book;
-import com.sda.spring.demo.model.Category;
-import com.sda.spring.demo.repository.BookRepository;
-import com.sda.spring.demo.service.AuthorService;
-import com.sda.spring.demo.service.BookService;
-import com.sda.spring.demo.service.CategoryService;
-import org.hibernate.validator.constraints.URL;
+import com.sda.spring.demo.model.*;
+
+import com.sda.spring.demo.service.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 public class Controller {
@@ -27,10 +24,21 @@ public class Controller {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private PublisherService publisherService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hello() {
         return "Hello";
     }
+
+
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     public List<Book> showBoks() {
@@ -47,9 +55,23 @@ public class Controller {
         return categoryService.getCategory();
     }
 
-    @RequestMapping(value = "/category", method = RequestMethod.POST)
-    public Category addCategory(@RequestBody Category category) {
-        return categoryService.save(category);
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public List<User> showUsers() {
+        return userService.getUsers();
+    }
+
+    @RequestMapping(value = "/role", method = RequestMethod.GET)
+    public List<Role> showRoles() {
+        return roleService.getRole();
+    }
+
+    @RequestMapping(value = "/publisher",method = RequestMethod.GET)
+    public List<Publisher> showPublishers(){return publisherService.getPublisher();}
+
+
+    @RequestMapping(value = "/books", method = RequestMethod.POST)
+    public Book addBook(@RequestBody Book book) {
+        return bookService.save(book);
     }
 
     @RequestMapping(value = "/authors", method = RequestMethod.POST)
@@ -57,23 +79,55 @@ public class Controller {
         return authorService.save(author);
     }
 
-    @RequestMapping(value = "/books", method = RequestMethod.POST)
-    public Book addBook(@RequestBody Book book) {
-        return bookService.save(book);
+    @RequestMapping(value = "/category", method = RequestMethod.POST)
+    public Category addCategory(@RequestBody Category category) {
+        return categoryService.save(category);
     }
 
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    public User addUser(@RequestBody User user) {
+        return userService.save(user);
+    }
+
+    @RequestMapping(value = "/role",method = RequestMethod.POST)
+    public Role addRole(@RequestBody Role role){
+        return roleService.save(role);
+    }
+
+    @RequestMapping (value = "/publisher",method = RequestMethod.POST)
+    public Publisher addPublisher(@RequestBody Publisher publisher){
+        return publisherService.save(publisher);
+    }
+
+
+
     @RequestMapping(value = "/books/{id}",method = RequestMethod.GET)
-    public Optional<Book> getBookById(@PathVariable Long id){
-        return bookService.getBookById(id);
+    public ResponseEntity<Book> getBookById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(bookService.getBookById(id));
     }
 
     @RequestMapping(value = "/authors/{id}",method = RequestMethod.GET)
-    public Optional<Author> getAuthorById(@PathVariable Long id){
-        return authorService.getAuthorById(id);
+    public ResponseEntity<Author> getAuthorById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(authorService.getAuthorById(id));
     }
 
     @RequestMapping(value = "/category/{id}",method = RequestMethod.GET)
-    public Optional<Category> getCategoryById(@PathVariable Long id){
-        return categoryService.getCategoryById(id);
+    public ResponseEntity<Category> getCategoryById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(categoryService.getCategoryById(id));
     }
+
+    @RequestMapping(value = "/publisher/{id}",method = RequestMethod.GET)
+    public ResponseEntity<Publisher> getPublisherById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(publisherService.getPublisherById(id));
+    }
+
+
+
+
+
+
 }

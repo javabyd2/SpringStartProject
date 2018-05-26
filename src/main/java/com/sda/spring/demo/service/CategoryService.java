@@ -1,5 +1,6 @@
 package com.sda.spring.demo.service;
 
+import com.sda.spring.demo.exceptions.CategoryNotFoundException;
 import com.sda.spring.demo.model.Author;
 import com.sda.spring.demo.model.Book;
 import com.sda.spring.demo.model.Category;
@@ -34,9 +35,10 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public Optional<Category> getCategoryById(Long id) {
-        Optional<Category> category = categoryRepository.findAllById(id);
+    public Category getCategoryById(Long id) {
+        Category category = categoryRepository.findById(id).orElseThrow(
+                ()->new CategoryNotFoundException(id)
+        );
         return category;
-
     }
 }

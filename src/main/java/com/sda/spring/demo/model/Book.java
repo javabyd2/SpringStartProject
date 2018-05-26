@@ -1,7 +1,6 @@
 package com.sda.spring.demo.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -32,6 +31,9 @@ public class Book {
             inverseJoinColumns =
             @JoinColumn(name = "author_id"))
     private Set<Author> authors;
+
+    @ManyToOne
+    private Publisher publisher;
 
     public Book(String title, Category category, Set<Author> authors) {
         this.title = title;
@@ -87,5 +89,13 @@ public class Book {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 }

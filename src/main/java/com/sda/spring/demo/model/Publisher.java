@@ -4,25 +4,30 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "publisher")
+public class Publisher {
+
+    // nie robimy geta na book !!!!!
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "category_id")
+    @Column(name = "id")
     private Long id;
-
     @Column(name = "name")
     private String name;
+    @Column(name = "address")
+    private String address;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "publisher",cascade = CascadeType.ALL)
     private Set<Book> books;
 
-    public Category(){
+    public Publisher() {
     }
 
-    public Category(String name) {
+    public Publisher(String name, String address, Set<Book> books) {
         this.name = name;
+        this.address = address;
+        this.books = books;
     }
 
     public Long getId() {
@@ -40,6 +45,15 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
 
     public void setBooks(Set<Book> books) {
         this.books = books;
