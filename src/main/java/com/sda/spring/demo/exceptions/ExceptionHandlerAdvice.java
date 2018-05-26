@@ -29,4 +29,10 @@ public class ExceptionHandlerAdvice {
                 .body(new ApiError(HttpStatus.NOT_FOUND,"Nie znaleziono kategorii",Arrays.asList("test")));
     }
 
+    @ExceptionHandler(PublisherNotFoundException.class)
+    public ResponseEntity handlerException(PublisherNotFoundException e){
+        return  ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ApiError((HttpStatus.NOT_FOUND),"Nie znaleziono wydawcy",Arrays.asList("test")));
+    }
+
 }
