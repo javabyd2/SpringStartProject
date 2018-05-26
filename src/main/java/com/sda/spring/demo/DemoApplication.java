@@ -48,6 +48,5 @@ public class DemoApplication implements CommandLineRunner {
 //
 //        bookRepository.save(book1);
 
-
     }
 }

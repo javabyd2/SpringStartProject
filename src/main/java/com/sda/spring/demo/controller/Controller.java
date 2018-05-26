@@ -1,5 +1,6 @@
 package com.sda.spring.demo.controller;
 
+import com.sda.spring.demo.dto.UserPropDTO;
 import com.sda.spring.demo.model.*;
 
 import com.sda.spring.demo.service.*;
@@ -56,8 +57,8 @@ public class Controller {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public List<User> showUsers() {
-        return userService.getUsers();
+    public List<User> showUser() {
+        return userService.getUser();
     }
 
     @RequestMapping(value = "/role", method = RequestMethod.GET)
@@ -101,6 +102,7 @@ public class Controller {
 
 
 
+
     @RequestMapping(value = "/books/{id}",method = RequestMethod.GET)
     public ResponseEntity<Book> getBookById(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK)
@@ -127,7 +129,8 @@ public class Controller {
 
 
 
-
-
-
+    @RequestMapping(value = "/users",method = RequestMethod.GET)
+    public List<UserPropDTO> showUserProp(){
+        return userService.getUsers();
+    }
 }

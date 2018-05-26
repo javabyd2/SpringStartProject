@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Użytkownik</title>
+</head>
+<body>
+
+<h2>Lista użytkowników</h2>
+<table border="1">
+    <tr>
+    <th>Imie</th>
+    <th>Nazwisko</th>
+    <th>Nick</th>
+    <th>Adres</th>
+    <th>Miasto</th>
+    <th>Kod pocztowy</th>
+    <th>Telefon</th>
+    </tr>
+
+    <tr th:each="user: ${usersList}">
+        <td th:text="${user.getUsername()}"> </td>
+        <td th:text="${user.getLastname()}"> </td>
+        <td th:text="${user.getNick()}"> </td>
+        <td th:text="${user.getAddres()}"> </td>
+        <td th:text="${user.getCity()}"> </td>
+        <td th:text="${user.getPostalcode()}"> </td>
+        <td th:text="${user.getTelephone()}"> </td>
+    </tr>
+</table>
+
+</body>
+</html>

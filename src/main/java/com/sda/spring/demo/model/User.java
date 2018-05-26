@@ -36,6 +36,7 @@ public class User {
         this.postalcode = postalcode;
         this.telephone = telephone;
         this.role = role;
+
     }
 
     public Long getId() {

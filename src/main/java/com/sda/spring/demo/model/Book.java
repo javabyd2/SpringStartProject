@@ -43,6 +43,7 @@ public class Book {
 
     public Book() {}
 
+
     public Long getId() {
         return id;
     }
@@ -60,6 +61,7 @@ public class Book {
     }
 
     public int getIsbn() {
+
         return isbn;
     }
 

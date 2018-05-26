@@ -1,7 +1,8 @@
 package com.sda.spring.demo.dto;
 
-public class UserPropertiesDTO {
+import com.sda.spring.demo.model.Role;
 
+public class UserPropDTO {
 
     private Long id;
     private String username;
@@ -11,6 +12,11 @@ public class UserPropertiesDTO {
     private String city;
     private int postalcode;
     private int telephone;
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
 
     public Long getId() {
         return id;
