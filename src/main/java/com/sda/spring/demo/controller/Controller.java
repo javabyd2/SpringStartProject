@@ -41,6 +41,7 @@ public class Controller {
 
 
 
+    @CrossOrigin(value = "http://localhost:3000")
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     public List<Book> showBoks() {
         return bookService.getBook();
