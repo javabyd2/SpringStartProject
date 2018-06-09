@@ -12,12 +12,21 @@ public class User {
 
     private String username;
     private String lastname;
-    private int password;
+    private String email;
+    private String password;
     private String nick;
     private String addres;
     private String city;
     private int postalcode;
     private int telephone;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @ManyToOne(cascade = CascadeType.ALL)
     // odnosi sie do mapped by w Role.java
@@ -26,7 +35,7 @@ public class User {
     public User() {
     }
 
-    public User(String username, String lastname, int password, String nick, String addres, String city, int postalcode, int telephone, Role role) {
+    public User(String username, String lastname, String password, String nick, String addres, String city, int postalcode, int telephone, Role role) {
         this.username = username;
         this.lastname = lastname;
         this.password = password;
@@ -63,11 +72,11 @@ public class User {
         this.lastname = lastname;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

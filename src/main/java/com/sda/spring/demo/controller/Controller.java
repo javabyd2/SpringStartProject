@@ -52,6 +52,7 @@ public class Controller {
         return authorService.getAuthor();
     }
 
+    @CrossOrigin(value = "http://localhost:3000")
     @RequestMapping(value = "/category", method = RequestMethod.GET)
     public List<Category> showCategory() {
         return categoryService.getCategory();
